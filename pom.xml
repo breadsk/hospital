@@ -6,6 +6,7 @@
   <modules>
     <module>microservice-gateway</module>
     <module>microservice-eureka</module>
+    <module>microservice-config</module>
   </modules>
 
   <parent>
