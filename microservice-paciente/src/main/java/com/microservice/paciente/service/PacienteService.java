@@ -21,6 +21,21 @@ public class PacienteService {
         return pacienteRepository.findAll();
     }
 
-    
+    public Optional<Paciente> getPatientById(int id){
+        return pacienteRepository.findById(id);
+    }
+
+    public Paciente getPatientById2(int id){
+        return pacienteRepository.findById(id).get();
+    }
+
+    //La funcion save sirve tanto para guardar como para 
+    public Paciente save(Paciente paciente){
+        return pacienteRepository.save(paciente);
+    }
+
+    public void delete(int id){
+        pacienteRepository.deleteById(id);
+    }
 
 }
