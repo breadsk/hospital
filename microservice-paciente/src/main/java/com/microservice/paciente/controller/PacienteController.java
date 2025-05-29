@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Optional;
+import java.net.URI;
 import java.time.LocalDateTime;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -70,5 +72,62 @@ public class PacienteController {
 
     }
     
+
+    @PostMapping("path")
+    public ResponseEntity<?> save(@Valid @RequestBody Paciente paciente){
+        try{
+            Paciente pacienteGuardado = pacienteService.save(paciente);
+
+            //Uri del nuevo recurso creado ( ej: http://localhost:8080/paciente/5)
+            URI location = ServletUriComponentsBuilder
+                    .fromCurrentRequest()
+                    .path("/{id}")
+                    .buildAndExpand(pacienteGuardado.getId_paciente())
+                    .toUri();
+
+            //Respuesta exitosa con cabeceras y cuerpo
+            return ResponseEntity
+                    .created(location)//Código 201 Created
+                    .body(pacienteGuardado);
+        } catch(DataIntegrityViolationException e){
+            //Ejemplo: Error si hay un campo único duplicado (ej: email repetido)
+            Map<String,String> error = new HashMap<>();
+            error.put("message","El email ya está registrado");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(error);//Error 409
+        }
+    }
+ 
+    @PutMapping("/{id_paciente}")
+    public ResponseEntity<Paciente> update(@PathVariable int id,@RequestBody Paciente paciente){
+        try{
+
+            Paciente pac = pacienteService.getPatientById2(id);
+            pac.setId_paciente(id);
+            pac.setRut(paciente.getRut());
+            pac.setNombres(paciente.getNombres());
+            pac.setApellidos(paciente.getApellidos());
+            pac.setFechaNacimiento(paciente.getFechaNacimiento());
+            pac.setCorreo(paciente.getCorreo());
+
+            pacienteService.save(paciente);
+            return ResponseEntity.ok(paciente);
+
+        }catch(Exception ex){
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> eliminar(@PathVariable int id){
+        try{
+
+            pacienteService.delete(id);
+            return ResponseEntity.noContent().build();//Operacion exitosa pero no hay
+            //contenido para devolver
+
+        }catch(Exception ex){
+            return ResponseEntity.notFound().build();
+        }
+    }
 
 }
