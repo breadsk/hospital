@@ -3,6 +3,7 @@ package com.microservice.paciente.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.Data;
 
@@ -11,6 +12,7 @@ import java.util.Date;
 @Entity//Le indico con el decorador que este sera el id de mi tabla
 @Table(name = "paciente")//Con esto le digo que sera autoincrementable
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Paciente {
