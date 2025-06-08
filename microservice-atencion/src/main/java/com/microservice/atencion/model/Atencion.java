@@ -37,9 +37,9 @@ public class Atencion {
     @Positive
     private Double costo;
 
+    private int id_paciente;
+
     @Column(nullable = false)
     private String comentario;
-
-    private int id_paciente;
 
 }

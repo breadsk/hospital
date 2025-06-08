@@ -26,14 +26,15 @@ public class AtencionService {
         return atencionRepository.findAll();
     }
 
-    public Optional<Atencion> getPatientById(int id){
-        return atencionRepository.findById(id);
+    public Optional<Atencion> getAtentionById(int id_atencion){
+        return atencionRepository.findById(id_atencion);
     }
 
-    public Atencion getPatientById2(int id){
-        return atencionRepository.findById(id).get();
+    public Atencion getAtentionById2(int id_atencion){
+        return atencionRepository.findById(id_atencion).get();
     }
 
     //La funcion save funciona tanto como para crear o actualizar
+    //public Atencion save()
     
 }
