@@ -3,11 +3,10 @@ package com.microservice.atencion.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Data;
 
-import java.time.LocalDate;
+import java.time.LocalDate;//Recomendado para versiones Java +8
 import java.time.LocalTime;//Recomendado para versiones Java +8
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -38,9 +37,9 @@ public class Atencion {
     @Positive
     private Double costo;
 
-    private int id_paciente;
-
     @Column(nullable = false)
     private String comentario;
+
+    private int id_paciente;
 
 }
