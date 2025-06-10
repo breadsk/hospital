@@ -1,5 +1,6 @@
 package com.microservice.paciente.service;
 
+import com.microservice.paciente.http.response.AtentionsByPatientResponse;
 import com.microservice.paciente.model.Paciente;
 import com.microservice.paciente.repository.PacienteRepository;
 import jakarta.transaction.Transactional;
@@ -12,7 +13,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class PacienteService {
+public class PacienteService{
 
     @Autowired
     private PacienteRepository pacienteRepository;
@@ -33,6 +34,8 @@ public class PacienteService {
     public Paciente save(Paciente paciente){
         return pacienteRepository.save(paciente);
     }
+
+    
 
     public void delete(int id){
         pacienteRepository.deleteById(id);

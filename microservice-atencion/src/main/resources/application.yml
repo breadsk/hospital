@@ -1,19 +1,7 @@
-server:
-  port: 9090
-
 spring:
   application:
     name: msvc-atencion
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/db_hospital_vm
-    username: root
-    password:
-  jpa:
-    hibername:
-      ddl-auto: update
-    database: mysql
-    database-platform: org.hibernate.dialect.MySQL8Dialect
+  
   config:
     import: optional:configserver:http://localhost:8888
 

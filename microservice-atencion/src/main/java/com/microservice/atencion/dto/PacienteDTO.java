@@ -1,4 +1,4 @@
-package com.microservice.paciente.dto;
+package com.microservice.atencion.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,3 +19,4 @@ public class PacienteDTO {
     private Date fechaNacimiento;
     private String correo;
 }
+

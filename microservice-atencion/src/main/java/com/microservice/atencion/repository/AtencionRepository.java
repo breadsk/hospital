@@ -9,7 +9,6 @@ import java.util.List;
 
 @Repository
 public interface AtencionRepository extends JpaRepository<Atencion,Integer>{
-    
-    @Query("SELECT a FROM atencion a WHERE a.id_paciente = :id_paciente")
+    @Query("SELECT a FROM Atencion a WHERE a.id_paciente = :id_paciente")
     List<Atencion> findAllAtention(int id_paciente);
 }

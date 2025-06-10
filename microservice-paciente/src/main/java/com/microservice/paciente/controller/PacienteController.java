@@ -44,7 +44,7 @@ public class PacienteController {
     }
     
     @GetMapping("/{id_paciente}")
-    public ResponseEntity<?> getPatientById(@PathVariable Integer id){
+    public ResponseEntity<?> getPatientById(@PathVariable("id_paciente") Integer id){
         Optional<Paciente> paciente = pacienteService.getPatientById(id);
 
         if(paciente.isPresent()){
@@ -129,5 +129,11 @@ public class PacienteController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    // @GetMapping("/search-by-patient/{id_paciente}")
+    // public ResponseEntity<?> findByIdPatient(@PathVariable int id_paciente) {
+    //     System.out.println("El ic del paciente es: -------------------------------" + id_paciente);
+    //     return ResponseEntity.ok(pacienteService.)
+    // }
 
 }
